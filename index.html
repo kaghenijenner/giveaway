@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <title>BraWorld Free Bra Giveaway Form</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,10 +50,17 @@
             id="firstName"
             name="firstName"
             type="text"
+            required
           />
 
           <label class="field-label" for="lastName">Last Name:</label>
-          <input class="line-input" id="lastName" name="lastName" type="text" />
+          <input
+            class="line-input"
+            id="lastName"
+            name="lastName"
+            type="text"
+            required
+          />
 
           <label class="field-label" for="instagram"
             >Instagram Handle
@@ -84,17 +92,35 @@
           <p class="field-label">Do you know what your bra size is?</p>
           <div class="stacked-options">
             <label
-              ><input type="checkbox" name="knowSize" value="yes" /> Yes</label
+              ><input
+                id="knowSizeYes"
+                type="checkbox"
+                name="knowSize"
+                value="yes"
+              />
+              Yes</label
             >
             <label
-              ><input type="checkbox" name="knowSize" value="no" /> No</label
+              ><input
+                id="knowSizeNo"
+                type="checkbox"
+                name="knowSize"
+                value="no"
+              />
+              No</label
             >
           </div>
 
-          <label class="field-label" for="braSize"
-            >If yes, what is your bra size?</label
+          <div
+            id="braSizeGroup"
+            class="conditional-field is-hidden"
+            aria-hidden="true"
           >
-          <input class="line-input" id="braSize" name="braSize" type="text" />
+            <label class="field-label" for="braSize"
+              >If yes, what is your bra size?</label
+            >
+            <input class="line-input" id="braSize" name="braSize" type="text" />
+          </div>
         </section>
 
         <section class="form-step" data-step="2">
@@ -103,15 +129,14 @@
           <p class="field-label strong">Which country are you located in?</p>
           <div class="stacked-options">
             <label
-              ><input type="checkbox" name="country" value="uganda" />
+              ><input type="radio" name="country" value="uganda" />
               Uganda</label
             >
             <label
-              ><input type="checkbox" name="country" value="kenya" />
-              Kenya</label
+              ><input type="radio" name="country" value="kenya" /> Kenya</label
             >
             <label
-              ><input type="checkbox" name="country" value="other" /> Other
+              ><input type="radio" name="country" value="other" /> Other
               Countries</label
             >
           </div>
@@ -119,7 +144,13 @@
           <label class="field-label strong" for="whatsapp"
             >Indicate your WhatsApp Number (Include country code):</label
           >
-          <input class="line-input" id="whatsapp" name="whatsapp" type="tel" />
+          <input
+            class="line-input"
+            id="whatsapp"
+            name="whatsapp"
+            type="tel"
+            required
+          />
 
           <p class="note">
             We will use this number to confirm your entry and contact the
@@ -157,29 +188,46 @@
 
           <div class="stacked-options">
             <label
-              ><input type="checkbox" name="source" value="instagram" />
+              ><input type="radio" name="source" value="instagram" />
               Instagram</label
             >
             <label
-              ><input type="checkbox" name="source" value="friend" />
-              Friend</label
+              ><input type="radio" name="source" value="friend" /> Friend</label
             >
             <label
-              ><input type="checkbox" name="source" value="customer" /> BraWorld
+              ><input type="radio" name="source" value="customer" /> BraWorld
               customer</label
             >
             <label
-              ><input type="checkbox" name="source" value="facebook" />
+              ><input type="radio" name="source" value="facebook" />
               Facebook</label
             >
             <label
-              ><input type="checkbox" name="source" value="tiktok" />
-              TikTok</label
+              ><input type="radio" name="source" value="tiktok" /> TikTok</label
             >
             <label
-              ><input type="checkbox" name="source" value="other" /> Other
-              (Please Specify)</label
+              ><input
+                id="sourceOtherOption"
+                type="radio"
+                name="source"
+                value="other"
+              />
+              Other (Please Specify)</label
             >
+          </div>
+
+          <div
+            id="sourceOtherGroup"
+            class="conditional-field is-hidden"
+            aria-hidden="true"
+          >
+            <label class="field-label" for="sourceOther">Please specify:</label>
+            <input
+              class="line-input"
+              id="sourceOther"
+              name="sourceOther"
+              type="text"
+            />
           </div>
         </section>
 

@@ -168,6 +168,14 @@ h2 {
   margin: 2px 0 12px;
 }
 
+.conditional-field {
+  transition: opacity 160ms ease;
+}
+
+.conditional-field.is-hidden {
+  display: none;
+}
+
 .stacked-options label,
 .single-option {
   display: block;
@@ -190,7 +198,27 @@ input[type="checkbox"] {
     border-color 180ms ease;
 }
 
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  border: 1px solid #bf9b89;
+  border-radius: 50%;
+  background: #fff;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
 input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+input[type="radio"]:checked {
   background: var(--accent);
   border-color: var(--accent);
 }
