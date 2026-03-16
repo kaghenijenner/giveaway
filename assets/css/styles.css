@@ -1,0 +1,196 @@
+:root {
+  --bg: #dcdcdc;
+  --text: #111111;
+  --line: #353535;
+  --muted: #2f2f2f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Times New Roman", Times, serif;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 36px 20px 64px;
+}
+
+.giveaway-form {
+  width: min(100%, 760px);
+  padding: 8px 4px;
+  line-height: 1.1;
+}
+
+.title {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+p {
+  margin: 0 0 18px;
+  font-size: 2.85rem;
+}
+
+.lead {
+  font-weight: 700;
+}
+
+section {
+  margin-top: 24px;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.is-active {
+  display: block;
+}
+
+.step-status {
+  margin: 6px 0 2px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.field-label {
+  display: block;
+  margin: 10px 0 6px;
+  font-size: 2.85rem;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.muted {
+  font-style: italic;
+  color: var(--muted);
+}
+
+.line-input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--line);
+  background: transparent;
+  font: inherit;
+  font-size: 2.75rem;
+  padding: 0 0 4px;
+  margin: 0 0 10px;
+  outline: none;
+}
+
+.stacked-options {
+  margin: 0 0 10px;
+}
+
+.stacked-options label,
+.single-option {
+  display: block;
+  font-size: 2.85rem;
+  margin: 2px 0;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-right: 6px;
+  vertical-align: -3px;
+  border: 1px solid #b9b9b9;
+  background: #cdcdcd;
+}
+
+input[type="checkbox"]:checked {
+  background: #8d8d8d;
+}
+
+.note {
+  font-style: italic;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.closing {
+  margin-top: 16px;
+}
+
+.step-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.nav-btn {
+  border: 1px solid #444;
+  background: #f0f0f0;
+  color: #111;
+  font: inherit;
+  font-size: 1.05rem;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: #151515;
+  color: #fff;
+}
+
+.nav-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  p,
+  .field-label,
+  .stacked-options label,
+  .single-option {
+    font-size: 1.5rem;
+  }
+
+  .line-input {
+    font-size: 1.5rem;
+    border-bottom-width: 1px;
+  }
+
+  h2 {
+    font-size: 1.9rem;
+  }
+
+  .step-status {
+    font-size: 1.05rem;
+  }
+
+  .step-actions {
+    justify-content: space-between;
+  }
+
+  .nav-btn {
+    width: 48%;
+    font-size: 1rem;
+  }
+}
