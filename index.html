@@ -1,109 +1,211 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BraWorld Free Bra Giveaway Form</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-  <main class="page">
-    <form class="giveaway-form" aria-label="BraWorld Free Bra Giveaway Form">
-      <h1 class="title">BRAWORLD FREE BRA GIVEAWAY</h1>
-
-      <p>
-        Ladies... did you know that most women are wearing the wrong bra size? BraWorld is giving one lucky woman a FREE beautiful high-quality bra and professional bra fitting! Every woman deserves comfort, support, and confidence.
-      </p>
-
-      <p class="lead">
-        Fill in the form below for a chance to win a FREE high-quality brand-new bra and professional bra fitting.
-      </p>
-
-      <section>
-        <h2>Personal Information</h2>
-
-        <label class="field-label" for="firstName">First Name:</label>
-        <input class="line-input" id="firstName" name="firstName" type="text">
-
-        <label class="field-label" for="lastName">Last Name:</label>
-        <input class="line-input" id="lastName" name="lastName" type="text">
-
-        <label class="field-label" for="instagram">Instagram Handle <span class="muted">(To tag the winner)</span>:</label>
-        <input class="line-input" id="instagram" name="instagram" type="text">
-
-        <label class="field-label" for="tiktok">TikTok Handle <span class="muted">(To tag the winner)</span>:</label>
-        <input class="line-input" id="tiktok" name="tiktok" type="text">
-
-        <label class="field-label" for="facebook">Facebook Handle <span class="muted">(To tag the winner)</span>:</label>
-        <input class="line-input" id="facebook" name="facebook" type="text">
-      </section>
-
-      <section>
-        <h2>Bra Information</h2>
-
-        <p class="field-label">Do you know what your bra size is?</p>
-        <div class="stacked-options">
-          <label><input type="checkbox" name="knowSize" value="yes"> Yes</label>
-          <label><input type="checkbox" name="knowSize" value="no"> No</label>
-        </div>
-
-        <label class="field-label" for="braSize">If yes, what is your bra size?</label>
-        <input class="line-input" id="braSize" name="braSize" type="text">
-      </section>
-
-      <section>
-        <h2>Contact Information</h2>
-
-        <p class="field-label strong">Which country are you located in?</p>
-        <div class="stacked-options">
-          <label><input type="checkbox" name="country" value="uganda"> Uganda</label>
-          <label><input type="checkbox" name="country" value="kenya"> Kenya</label>
-          <label><input type="checkbox" name="country" value="other"> Other Countries</label>
-        </div>
-
-        <label class="field-label strong" for="whatsapp">Indicate your WhatsApp Number (Include country code):</label>
-        <input class="line-input" id="whatsapp" name="whatsapp" type="tel">
-
-        <p class="note">We will use this number to confirm your entry and contact the winner.</p>
-      </section>
-
-      <section>
-        <h2>Giveaway Qualification</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BraWorld Free Bra Giveaway Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <form
+        id="giveawayForm"
+        class="giveaway-form"
+        aria-label="BraWorld Free Bra Giveaway Form"
+      >
+        <h1 class="title">BRAWORLD FREE BRA GIVEAWAY</h1>
 
         <p>
-          The winner will be randomly selected and verified. To qualify for the giveaway please confirm the following:
+          Ladies... did you know that most women are wearing the wrong bra size?
+          BraWorld is giving one lucky woman a FREE beautiful high-quality bra
+          and professional bra fitting! Every woman deserves comfort, support,
+          and confidence.
         </p>
 
-        <div class="stacked-options">
-          <label><input type="checkbox" name="qualification" value="follow"> I follow <strong>@braworld</strong> on Instagram or TikTok or Facebook</label>
-          <label><input type="checkbox" name="qualification" value="liked"> I liked the giveaway post</label>
-          <label><input type="checkbox" name="qualification" value="tagged"> I tagged at least <strong>2 friends</strong> in the comments</label>
-        </div>
-      </section>
-
-      <section>
-        <h2>How did you hear about this giveaway?</h2>
-
-        <div class="stacked-options">
-          <label><input type="checkbox" name="source" value="instagram"> Instagram</label>
-          <label><input type="checkbox" name="source" value="friend"> Friend</label>
-          <label><input type="checkbox" name="source" value="customer"> BraWorld customer</label>
-          <label><input type="checkbox" name="source" value="facebook"> Facebook</label>
-          <label><input type="checkbox" name="source" value="tiktok"> TikTok</label>
-          <label><input type="checkbox" name="source" value="other"> Other (Please Specify)</label>
-        </div>
-      </section>
-
-      <section>
-        <h2>Consent</h2>
-
-        <label class="single-option"><input type="checkbox" name="consent" value="agree"> I agree to be contacted by BraWorld regarding the giveaway and future promotions.</label>
-
-        <p class="closing">
-          Thanks so much for registering for the BRAWORLD FREE BRA GIVEAWAY. Wishing you all the best of luck.
+        <p class="lead">
+          Fill in the form below for a chance to win a FREE high-quality
+          brand-new bra and professional bra fitting.
         </p>
-      </section>
-    </form>
-  </main>
-</body>
+
+        <p id="stepIndicator" class="step-status" aria-live="polite">
+          Section 1 of 6
+        </p>
+        <div class="step-progress" aria-hidden="true">
+          <span id="stepProgressBar"></span>
+        </div>
+
+        <section class="form-step is-active" data-step="0">
+          <h2>Personal Information</h2>
+
+          <label class="field-label" for="firstName">First Name:</label>
+          <input
+            class="line-input"
+            id="firstName"
+            name="firstName"
+            type="text"
+          />
+
+          <label class="field-label" for="lastName">Last Name:</label>
+          <input class="line-input" id="lastName" name="lastName" type="text" />
+
+          <label class="field-label" for="instagram"
+            >Instagram Handle
+            <span class="muted">(To tag the winner)</span>:</label
+          >
+          <input
+            class="line-input"
+            id="instagram"
+            name="instagram"
+            type="text"
+          />
+
+          <label class="field-label" for="tiktok"
+            >TikTok Handle
+            <span class="muted">(To tag the winner)</span>:</label
+          >
+          <input class="line-input" id="tiktok" name="tiktok" type="text" />
+
+          <label class="field-label" for="facebook"
+            >Facebook Handle
+            <span class="muted">(To tag the winner)</span>:</label
+          >
+          <input class="line-input" id="facebook" name="facebook" type="text" />
+        </section>
+
+        <section class="form-step" data-step="1">
+          <h2>Bra Information</h2>
+
+          <p class="field-label">Do you know what your bra size is?</p>
+          <div class="stacked-options">
+            <label
+              ><input type="checkbox" name="knowSize" value="yes" /> Yes</label
+            >
+            <label
+              ><input type="checkbox" name="knowSize" value="no" /> No</label
+            >
+          </div>
+
+          <label class="field-label" for="braSize"
+            >If yes, what is your bra size?</label
+          >
+          <input class="line-input" id="braSize" name="braSize" type="text" />
+        </section>
+
+        <section class="form-step" data-step="2">
+          <h2>Contact Information</h2>
+
+          <p class="field-label strong">Which country are you located in?</p>
+          <div class="stacked-options">
+            <label
+              ><input type="checkbox" name="country" value="uganda" />
+              Uganda</label
+            >
+            <label
+              ><input type="checkbox" name="country" value="kenya" />
+              Kenya</label
+            >
+            <label
+              ><input type="checkbox" name="country" value="other" /> Other
+              Countries</label
+            >
+          </div>
+
+          <label class="field-label strong" for="whatsapp"
+            >Indicate your WhatsApp Number (Include country code):</label
+          >
+          <input class="line-input" id="whatsapp" name="whatsapp" type="tel" />
+
+          <p class="note">
+            We will use this number to confirm your entry and contact the
+            winner.
+          </p>
+        </section>
+
+        <section class="form-step" data-step="3">
+          <h2>Giveaway Qualification</h2>
+
+          <p>
+            The winner will be randomly selected and verified. To qualify for
+            the giveaway please confirm the following:
+          </p>
+
+          <div class="stacked-options">
+            <label
+              ><input type="checkbox" name="qualification" value="follow" /> I
+              follow <strong>@braworld</strong> on Instagram or TikTok or
+              Facebook</label
+            >
+            <label
+              ><input type="checkbox" name="qualification" value="liked" /> I
+              liked the giveaway post</label
+            >
+            <label
+              ><input type="checkbox" name="qualification" value="tagged" /> I
+              tagged at least <strong>2 friends</strong> in the comments</label
+            >
+          </div>
+        </section>
+
+        <section class="form-step" data-step="4">
+          <h2>How did you hear about this giveaway?</h2>
+
+          <div class="stacked-options">
+            <label
+              ><input type="checkbox" name="source" value="instagram" />
+              Instagram</label
+            >
+            <label
+              ><input type="checkbox" name="source" value="friend" />
+              Friend</label
+            >
+            <label
+              ><input type="checkbox" name="source" value="customer" /> BraWorld
+              customer</label
+            >
+            <label
+              ><input type="checkbox" name="source" value="facebook" />
+              Facebook</label
+            >
+            <label
+              ><input type="checkbox" name="source" value="tiktok" />
+              TikTok</label
+            >
+            <label
+              ><input type="checkbox" name="source" value="other" /> Other
+              (Please Specify)</label
+            >
+          </div>
+        </section>
+
+        <section class="form-step" data-step="5">
+          <h2>Consent</h2>
+
+          <label class="single-option"
+            ><input type="checkbox" name="consent" value="agree" /> I agree to
+            be contacted by BraWorld regarding the giveaway and future
+            promotions.</label
+          >
+
+          <p class="closing">
+            Thanks so much for registering for the BRAWORLD FREE BRA GIVEAWAY.
+            Wishing you all the best of luck.
+          </p>
+        </section>
+
+        <div class="step-actions">
+          <button id="prevBtn" class="nav-btn" type="button">Previous</button>
+          <button id="nextBtn" class="nav-btn primary" type="button">
+            Next
+          </button>
+        </div>
+      </form>
+    </main>
+    <script src="assets/js/form-stepper.js" defer></script>
+  </body>
 </html>
