@@ -8,6 +8,10 @@ const braSizeGroup = document.getElementById("braSizeGroup");
 const braSizeInput = document.getElementById("braSize");
 const knowSizeInputs = document.querySelectorAll('input[name="knowSize"]');
 const knowSizeYesInput = document.getElementById("knowSizeYes");
+const countryCodeSelect = document.getElementById("countryCode");
+const countryCodeOtherGroup = document.getElementById("countryCodeOtherGroup");
+const countryCodeOtherInput = document.getElementById("countryCodeOther");
+const whatsappInput = document.getElementById("whatsapp");
 const sourceInputs = document.querySelectorAll('input[name="source"]');
 const sourceOtherOption = document.getElementById("sourceOtherOption");
 const sourceOtherGroup = document.getElementById("sourceOtherGroup");
@@ -43,6 +47,43 @@ function getPayloadFromForm() {
     return value ? String(value).trim() : "";
   };
 
+  const selectedCountryCode = asString("countryCode");
+  const customCountryCode = asString("countryCodeOther");
+  const resolvedCountryCode =
+    selectedCountryCode === "other" ? customCountryCode : selectedCountryCode;
+
+  const country =
+    selectedCountryCode === "+256"
+      ? "uganda"
+      : selectedCountryCode === "+254"
+        ? "kenya"
+        : "other";
+
+  const normalizedCountryCode = resolvedCountryCode.startsWith("+")
+    ? resolvedCountryCode
+    : `+${resolvedCountryCode.replace(/\D/g, "")}`;
+  const rawWhatsapp = asString("whatsapp");
+  const sanitizedWhatsapp = rawWhatsapp.replace(/\s+/g, "");
+  const countryDigits = normalizedCountryCode.replace(/\D/g, "");
+  const enteredDigits = sanitizedWhatsapp.replace(/\D/g, "");
+
+  let whatsapp = sanitizedWhatsapp;
+  if (selectedCountryCode === "other") {
+    whatsapp = sanitizedWhatsapp.startsWith(normalizedCountryCode)
+      ? sanitizedWhatsapp
+      : `${normalizedCountryCode}${enteredDigits}`;
+  } else if (selectedCountryCode === "+256" || selectedCountryCode === "+254") {
+    if (sanitizedWhatsapp.startsWith(normalizedCountryCode)) {
+      whatsapp = `${normalizedCountryCode}${sanitizedWhatsapp
+        .slice(normalizedCountryCode.length)
+        .replace(/\D/g, "")}`;
+    } else if (enteredDigits.startsWith(countryDigits)) {
+      whatsapp = `+${enteredDigits}`;
+    } else {
+      whatsapp = `${normalizedCountryCode}${enteredDigits}`;
+    }
+  }
+
   return {
     firstName: asString("firstName"),
     lastName: asString("lastName"),
@@ -51,13 +92,69 @@ function getPayloadFromForm() {
     facebook: asString("facebook"),
     knowSize: asString("knowSize"),
     braSize: asString("braSize"),
-    country: asString("country"),
-    whatsapp: asString("whatsapp"),
+    country,
+    whatsapp,
     qualification: formData.getAll("qualification"),
     source: asString("source"),
     sourceOther: asString("sourceOther"),
     consent: formData.get("consent") === "agree",
   };
+}
+
+function updateWhatsappCountryPrefix() {
+  if (!whatsappInput || !countryCodeSelect) {
+    return;
+  }
+
+  const selectedCountryCode = countryCodeSelect.value;
+  const isPresetCode =
+    selectedCountryCode === "+256" || selectedCountryCode === "+254";
+
+  if (!isPresetCode) {
+    whatsappInput.placeholder = "Enter your WhatsApp number";
+    return;
+  }
+
+  const prefix = selectedCountryCode;
+  const prefixDigits = prefix.replace(/\D/g, "");
+  const rawValue = whatsappInput.value.trimStart();
+  let currentDigits = rawValue.replace(/\D/g, "");
+
+  if (rawValue.startsWith("+")) {
+    const knownPrefixDigits = ["256", "254"];
+    for (const knownPrefix of knownPrefixDigits) {
+      if (currentDigits.startsWith(knownPrefix)) {
+        currentDigits = currentDigits.slice(knownPrefix.length);
+        break;
+      }
+    }
+  } else if (currentDigits.startsWith(prefixDigits)) {
+    currentDigits = currentDigits.slice(prefixDigits.length);
+  }
+
+  whatsappInput.value = currentDigits
+    ? `${prefix} ${currentDigits}`
+    : `${prefix} `;
+  whatsappInput.placeholder = "Enter phone number only";
+}
+
+function updateCountryCodeOtherVisibility() {
+  const showCountryCodeOther = countryCodeSelect?.value === "other";
+
+  if (countryCodeOtherGroup) {
+    countryCodeOtherGroup.classList.toggle("is-hidden", !showCountryCodeOther);
+    countryCodeOtherGroup.setAttribute(
+      "aria-hidden",
+      String(!showCountryCodeOther),
+    );
+  }
+
+  if (countryCodeOtherInput) {
+    countryCodeOtherInput.required = showCountryCodeOther;
+    if (!showCountryCodeOther) {
+      countryCodeOtherInput.value = "";
+    }
+  }
 }
 
 function updateBraSizeVisibility() {
@@ -142,6 +239,21 @@ sourceInputs.forEach((input) => {
   });
 });
 
+countryCodeSelect?.addEventListener("change", () => {
+  updateCountryCodeOtherVisibility();
+  updateWhatsappCountryPrefix();
+});
+
+whatsappInput?.addEventListener("input", () => {
+  updateWhatsappCountryPrefix();
+});
+
+countryCodeOtherInput?.addEventListener("input", () => {
+  if (countryCodeSelect?.value === "other" && whatsappInput) {
+    whatsappInput.placeholder = "Enter full number or number without code";
+  }
+});
+
 nextButton.addEventListener("click", () => {
   if (currentStep < steps.length - 1) {
     if (!validateCurrentStep()) {
@@ -195,4 +307,6 @@ form.addEventListener("submit", async (event) => {
 
 updateStepView();
 updateBraSizeVisibility();
+updateCountryCodeOtherVisibility();
+updateWhatsappCountryPrefix();
 updateSourceOtherVisibility();

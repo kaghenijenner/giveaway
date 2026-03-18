@@ -164,6 +164,29 @@ h2 {
   border-bottom-color: var(--accent);
 }
 
+.phone-inline {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.phone-inline-country {
+  flex: 0 0 220px;
+}
+
+.phone-inline-number {
+  flex: 1;
+}
+
+.phone-inline .field-label {
+  margin-top: 2px;
+}
+
+.phone-inline .line-input {
+  margin-bottom: 0;
+}
+
 .stacked-options {
   margin: 2px 0 12px;
 }
@@ -295,6 +318,17 @@ input[type="radio"]:checked {
   .line-input {
     font-size: 1rem;
     border-bottom-width: 1px;
+  }
+
+  .phone-inline {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .phone-inline-country,
+  .phone-inline-number {
+    flex: 1 1 auto;
   }
 
   h2 {

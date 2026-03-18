@@ -126,31 +126,57 @@
         <section class="form-step" data-step="2">
           <h2>Contact Information</h2>
 
-          <p class="field-label strong">Which country are you located in?</p>
-          <div class="stacked-options">
-            <label
-              ><input type="radio" name="country" value="uganda" />
-              Uganda</label
-            >
-            <label
-              ><input type="radio" name="country" value="kenya" /> Kenya</label
-            >
-            <label
-              ><input type="radio" name="country" value="other" /> Other
-              Countries</label
-            >
+          <label class="field-label strong" for="whatsapp"
+            >WhatsApp Number:</label
+          >
+
+          <div class="phone-inline">
+            <div class="phone-inline-country">
+              <label class="field-label" for="countryCode">Country code</label>
+              <select
+                class="line-input"
+                id="countryCode"
+                name="countryCode"
+                required
+              >
+                <option value="" selected disabled>Choose</option>
+                <option value="+256" data-country="uganda">
+                  Uganda (+256)
+                </option>
+                <option value="+254" data-country="kenya">Kenya (+254)</option>
+                <option value="other" data-country="other">Other</option>
+              </select>
+            </div>
+
+            <div class="phone-inline-number">
+              <label class="field-label" for="whatsapp">Phone number</label>
+              <input
+                class="line-input"
+                id="whatsapp"
+                name="whatsapp"
+                type="tel"
+                required
+              />
+            </div>
           </div>
 
-          <label class="field-label strong" for="whatsapp"
-            >Indicate your WhatsApp Number (Include country code):</label
+          <div
+            id="countryCodeOtherGroup"
+            class="conditional-field is-hidden"
+            aria-hidden="true"
           >
-          <input
-            class="line-input"
-            id="whatsapp"
-            name="whatsapp"
-            type="tel"
-            required
-          />
+            <label class="field-label" for="countryCodeOther"
+              >Enter country code (example: +255):</label
+            >
+            <input
+              class="line-input"
+              id="countryCodeOther"
+              name="countryCodeOther"
+              type="text"
+              inputmode="tel"
+              placeholder="+255"
+            />
+          </div>
 
           <p class="note">
             We will use this number to confirm your entry and contact the
